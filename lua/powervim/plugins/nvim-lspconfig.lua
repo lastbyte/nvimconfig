@@ -59,6 +59,9 @@ return {
       },
     })
 
+    -- typescript
+    lspconfig.typescript.setup({})
+
     -- nice icons
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do

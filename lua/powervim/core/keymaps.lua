@@ -8,7 +8,6 @@ end
 local keymap = vim.keymap -- for conciseness
 
 -- Neovim
-keymap.set("n", "<esc>", "<cmd>nohl<cr>")
 keymap.set("n", "<C-q>", "<cmd>qa!<CR>", { desc = "Close Neovim" })
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes" })
 keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode" })
@@ -26,8 +25,8 @@ keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
 keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- tab navigation
-keymap.set({ "n", "i", "v" }, "<C-]>", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
-keymap.set({ "n", "i", "v" }, "<C-[>", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
+keymap.set({ "n", "i", "v" }, "-", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
+keymap.set({ "n", "i", "v" }, "_", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
 keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose<cr>", { desc = "close current buffer" })
 
 -- splits management
