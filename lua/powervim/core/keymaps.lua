@@ -26,8 +26,8 @@ keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
 keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- tab navigation
-keymap.set({ "n", "i", "v" }, "<tab>", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
-keymap.set({ "n", "i", "v" }, "<S-tab>", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
+keymap.set({ "n", "i", "v" }, "<C-]>", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
+keymap.set({ "n", "i", "v" }, "<C-[>", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
 keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose<cr>", { desc = "close current buffer" })
 
 -- splits management
@@ -133,7 +133,12 @@ keymap.set(
   "<cmd>Telescope git_bcommits_range<cr>",
   { desc = "git history for the selection", noremap = true, silent = true }
 )
-
+keymap.set(
+  "n",
+  "<leader>gb",
+  "<cmd>Gitsigns blame_line<cr>",
+  { desc = "git history for the selection", noremap = true, silent = true }
+)
 -- search
 keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Live grep in cwd" })
 keymap.set("n", "<leader>fs", "<cmd>Telescope grep_string<cr>", { desc = "find the word under cursor" })
