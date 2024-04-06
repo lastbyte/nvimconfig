@@ -11,6 +11,7 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("n", "<esc>", "<cmd>nohl<cr>")
 keymap.set("n", "<C-q>", "<cmd>qa!<CR>", { desc = "Close Neovim" })
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes" })
+keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode" })
 
 -- disable updating register for x and c
 keymap.set("n", "x", '"_x')
@@ -23,6 +24,11 @@ keymap.set("n", "<C-h>", "<C-w>h", { desc = "Change window to left" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Change window to bottom" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
 keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
+
+-- tab navigation
+keymap.set({ "n", "i", "v" }, "<tab>", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
+keymap.set({ "n", "i", "v" }, "<S-tab>", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
+keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose<cr>", { desc = "close current buffer" })
 
 -- splits management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -140,3 +146,18 @@ keymap.set(
   "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
   { desc = "find the symbols across project" }
 )
+
+-- terminal
+keymap.set(
+  "n",
+  "<leader>h",
+  "<cmd>ToggleTerm direction=horizontal name=SHELL<cr>",
+  { desc = "open a horizontal terminal" }
+)
+keymap.set(
+  "n",
+  "<leader>v",
+  "<cmd>ToggleTerm direction=vertical size=50 name=SHELL<cr>",
+  { desc = "open a vertical terminal" }
+)
+keymap.set({ "n", "i", "t" }, "<C-t>", "<cmd>ToggleTermToggleAll<cr>", { desc = "toggle terminal" })

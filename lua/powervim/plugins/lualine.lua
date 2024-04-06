@@ -4,69 +4,45 @@ return {
   config = function()
     local lualine = require("lualine")
 
-    local function xcodebuild_device()
-      if vim.g.xcodebuild_platform == "macOS" then
-        return " macOS"
-      end
-
-      if vim.g.xcodebuild_os then
-        return " " .. vim.g.xcodebuild_device_name .. " (" .. vim.g.xcodebuild_os .. ")"
-      end
-
-      return " " .. vim.g.xcodebuild_device_name
-    end
-
     lualine.setup({
       options = {
-        globalstatus = true,
+        icons_enabled = true,
         theme = "auto",
-        symbols = {
-          alternate_file = "#",
-          directory = "",
-          readonly = "",
-          unnamed = "[No Name]",
-          newfile = "[New]",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
         },
-        disabled_buftypes = { "quickfix", "prompt" },
-        component_separators = "",
-        section_separators = { left = "", right = "" },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+        },
       },
       sections = {
-        lualine_a = {
-          -- { "mode" },
-          { "filename" },
-        },
-        lualine_b = {
-          { "diagnostics" },
-          { "diff" },
-          {
-            "searchcount",
-            maxcount = 999,
-            timeout = 500,
-          },
-        },
-        lualine_c = {},
-        lualine_x = {
-          { "' ' .. vim.g.xcodebuild_last_status", color = { fg = "#a6e3a1" } },
-          -- { "'󰙨 ' .. vim.g.xcodebuild_test_plan", color = { fg = "#a6e3a1", bg = "#161622" } },
-          { xcodebuild_device, color = { fg = "#f9e2af", bg = "#161622" } },
-        },
-        lualine_y = {
-          { "branch" },
-        },
-        lualine_z = {
-          { "location" },
-        },
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { "filename" },
-        lualine_x = {},
+        lualine_x = { "location" },
         lualine_y = {},
         lualine_z = {},
       },
-      extensions = { "nvim-dap-ui", "quickfix", "trouble", "nvim-tree", "lazy", "mason" },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
     })
   end,
 }
