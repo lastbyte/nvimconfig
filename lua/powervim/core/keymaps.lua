@@ -129,12 +129,7 @@ keymap.set(
   { desc = "git history for the selection", noremap = true, silent = true }
 )
 -- search
-keymap.set(
-  "n",
-  "<leader>fw",
-  "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-  { desc = "Live grep in cwd" }
-)
+keymap.set("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 keymap.set(
   "n",
   "<leader>fs",
