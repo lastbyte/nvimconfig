@@ -25,8 +25,8 @@ keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
 keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- tab navigation
-keymap.set({ "n", "i", "v" }, "-", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
-keymap.set({ "n", "i", "v" }, "_", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
+keymap.set({ "n", "v" }, "-", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
+keymap.set({ "n", "v" }, "_", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
 keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose<cr>", { desc = "close current buffer" })
 
 -- splits management
@@ -81,18 +81,8 @@ keymap.set(
 
 -- diagnostics
 -- Lua
-keymap.set(
-  "n",
-  "<leader>dn",
-  "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-  { noremap = true, silent = true }
-)
-keymap.set(
-  "n",
-  "<leader>dp",
-  "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>",
-  { noremap = true, silent = true }
-)
+keymap.set("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<cr>", { noremap = true, silent = true })
+keymap.set("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { noremap = true, silent = true })
 keymap.set("n", "<leader>da", "<cmd>Telescope diagnostics<cr>", { noremap = true, silent = true })
 
 -- git
@@ -139,8 +129,18 @@ keymap.set(
   { desc = "git history for the selection", noremap = true, silent = true }
 )
 -- search
-keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Live grep in cwd" })
-keymap.set("n", "<leader>fs", "<cmd>Telescope grep_string<cr>", { desc = "find the word under cursor" })
+keymap.set(
+  "n",
+  "<leader>fw",
+  "<cmd>lua require('telescope.builtin').live_grep()<cr>",
+  { desc = "Live grep in cwd" }
+)
+keymap.set(
+  "n",
+  "<leader>fs",
+  "<cmd>lua require('telescope.builtin').grep_string()<cr>",
+  { desc = "find the word under cursor" }
+)
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "list files" })
 keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "find files in git" })
 -- search for symbols
