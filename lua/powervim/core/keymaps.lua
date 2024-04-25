@@ -33,6 +33,7 @@ keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose!<cr>", { desc = "close curren
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+keymap.set('n', "<leader>e", ":Neotree toggle <cr>", { desc = "toggle tree" })
 
 keymap.set("n", "D", "d$", { desc = "delete to end of line" })
 keymap.set("x", "Y", "y$", { desc = "Yank to end of line" })

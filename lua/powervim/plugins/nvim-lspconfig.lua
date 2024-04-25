@@ -29,6 +29,7 @@ return {
 
     lspconfig["sourcekit"].setup({
       cmd = { '/usr/bin/sourcekit-lsp' },
+      pattern = { "c", "h", "hpp", "cpp" },
       capabilities = capabilities,
       on_attach = on_attach,
       on_init = on_init
@@ -38,12 +39,12 @@ return {
     -- lspconfig.ccls.setup {
     --
     -- }
-    lspconfig.clangd.setup {
-      pattern = { "c", "h", "hpp", "cpp" },
-      capabilities = capabilities,
-      on_attach = on_attach,
-      on_init = on_init,
-    }
+    -- lspconfig.clangd.setup {
+    --   pattern = { "c", "h", "hpp", "cpp" },
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   on_init = on_init,
+    -- }
 
     -- lua
     lspconfig.lua_ls.setup({

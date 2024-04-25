@@ -13,7 +13,7 @@ return {
 
     -- configure nvim-tree
     nvimtree.setup({
-      open_on_tab = true,
+      open_on_tab = false,
       notify = {
         threshold = vim.log.levels.WARN,
       },
@@ -57,10 +57,5 @@ return {
         update_root = false,
       },
     })
-
-    -- set keymaps
-    local keymap = vim.keymap
-
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
   end,
 }
