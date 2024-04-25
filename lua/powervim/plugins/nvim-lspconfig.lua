@@ -9,6 +9,7 @@ return {
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
+    capabilities.offsetEncoding = { "utf-16" }
     local opts = { noremap = true, silent = true }
     local on_attach = function(_, bufnr)
       opts.buffer = bufnr
@@ -27,10 +28,22 @@ return {
     end
 
     lspconfig["sourcekit"].setup({
+      cmd = { '/usr/bin/sourcekit-lsp' },
+      capabilities = capabilities,
+      on_attach = on_attach,
+      on_init = on_init
+    })
+
+    -- c/c++
+    -- lspconfig.ccls.setup {
+    --
+    -- }
+    lspconfig.clangd.setup {
+      pattern = { "c", "h", "hpp", "cpp" },
       capabilities = capabilities,
       on_attach = on_attach,
       on_init = on_init,
-    })
+    }
 
     -- lua
     lspconfig.lua_ls.setup({
@@ -60,7 +73,7 @@ return {
     })
 
     -- typescript
-    lspconfig.typescript.setup({})
+    lspconfig.tsserver.setup({})
 
     -- nice icons
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }

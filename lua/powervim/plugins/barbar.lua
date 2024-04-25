@@ -1,7 +1,7 @@
 return {
   "romgrk/barbar.nvim",
   dependencies = {
-    "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+    "lewis6991/gitsigns.nvim",     -- OPTIONAL: for git status
     "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
   },
 
@@ -56,10 +56,10 @@ return {
         button = "",
         -- Enables / disables diagnostic symbols
         diagnostics = {
-          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },
+          [vim.diagnostic.severity.ERROR] = { enabled = false },
           [vim.diagnostic.severity.WARN] = { enabled = false },
           [vim.diagnostic.severity.INFO] = { enabled = false },
-          [vim.diagnostic.severity.HINT] = { enabled = true },
+          [vim.diagnostic.severity.HINT] = { enabled = false },
         },
         -- gitsigns = {
         --   added = { enabled = true, icon = "+" },

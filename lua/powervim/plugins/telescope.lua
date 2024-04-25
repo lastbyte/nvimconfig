@@ -15,11 +15,20 @@ return {
     local lga_actions = require("telescope-live-grep-args.actions")
 
     telescope.setup({
+      pickers = {
+        colorscheme = {
+          enable_preview = true
+        }
+      },
+      defaults = {
+        layout_strategy = 'vertical',
+        layout_config = { height = 0.95 },
+      },
       extensions = {
         live_grep_args = {
           auto_quoting = true, -- enable/disable auto-quoting
           -- define mappings, e.g.
-          mappings = { -- extend mappings
+          mappings = {         -- extend mappings
             i = {
               ["<C-k>"] = lga_actions.quote_prompt(),
               ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),

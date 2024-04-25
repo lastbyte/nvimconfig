@@ -27,7 +27,7 @@ keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
 -- tab navigation
 keymap.set({ "n", "v" }, "-", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
 keymap.set({ "n", "v" }, "_", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
-keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose<cr>", { desc = "close current buffer" })
+keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose!<cr>", { desc = "close current buffer" })
 
 -- splits management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -94,7 +94,7 @@ keymap.set(
 )
 keymap.set(
   "n",
-  "<leader>gb",
+  "<leader>gl",
   "<cmd>Telescope git_branches<cr>",
   { desc = "git commits", noremap = true, silent = true }
 )
@@ -128,22 +128,34 @@ keymap.set(
   "<cmd>Gitsigns blame_line<cr>",
   { desc = "git history for the selection", noremap = true, silent = true }
 )
+
+keymap.set("n", "<space>fb", function()
+  require("telescope").extensions.file_browser.file_browser()
+end, { noremap = true, silent = true, desc = "file browser" })
 -- search
-keymap.set("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+keymap.set("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { noremap = true, silent = true, })
 keymap.set(
   "n",
   "<leader>fs",
   "<cmd>lua require('telescope.builtin').grep_string()<cr>",
-  { desc = "find the word under cursor" }
+  { noremap = true, silent = true, desc = "find the word under cursor" }
 )
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "list files" })
-keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "find files in git" })
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true, desc = "list files" })
+keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>",
+  { noremap = true, silent = true, desc = "find files in git" })
 -- search for symbols
 keymap.set(
   "n",
-  "<leader>ws",
-  "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-  { desc = "find the symbols across project" }
+  "<leader>sw",
+  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>",
+  { noremap = true, silent = true, desc = "find the symbols across project" }
+)
+keymap.set(
+  "n",
+  "<leader>sf",
+  "<cmd>lua require('telescope.builtin').treesitter()<cr>",
+  { noremap = true, silent = true, desc = "find the symbols across project" }
 )
 
 -- terminal
@@ -151,12 +163,33 @@ keymap.set(
   "n",
   "<leader>h",
   "<cmd>ToggleTerm direction=horizontal name=SHELL<cr>",
-  { desc = "open a horizontal terminal" }
+  { noremap = true, silent = true, desc = "open a horizontal terminal" }
 )
 keymap.set(
   "n",
   "<leader>v",
   "<cmd>ToggleTerm direction=vertical size=50 name=SHELL<cr>",
-  { desc = "open a vertical terminal" }
+  { noremap = true, silent = true, desc = "open a vertical terminal" }
 )
-keymap.set({ "n", "i", "t" }, "<C-t>", "<cmd>ToggleTermToggleAll<cr>", { desc = "toggle terminal" })
+keymap.set({ "n", "i", "t" }, "<C-t>", "<cmd>ToggleTermToggleAll<cr>",
+  { noremap = true, silent = true, desc = "toggle terminal" })
+-- renamer
+keymap.set('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+keymap.set('n', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+keymap.set('v', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+
+--dap
+keymap.set('n', '<leader>dk', '<cmd>lua require("dap").terminate()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" })
+--dap
+keymap.set('n', '<leader>do', '<cmd>lua require("dapui").open()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" })
+keymap.set('n', '<leader>dc', '<cmd>lua require("dapui").close()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" })
+
+keymap.set('n', '<F5>', "<cmd>lua require('dap').continue()<cr>", { noremap = true, silent = true, desc = "continue" })
+keymap.set('n', '<F10>', "<cmd>lua require('dap').step_over()<cr>", { noremap = true, silent = true, desc = "step over" })
+keymap.set('n', '<F11>', "<cmd>lua require('dap').step_into()<cr>", { noremap = true, silent = true, desc = "step into" })
+keymap.set('n', '<F12>', "<cmd>lua require('dap').step_out()<cr>", { noremap = true, silent = true, desc = "step out" })
+keymap.set('n', '<leader>db', "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+  { noremap = true, silent = true, desc = "toggle breakpoint" })

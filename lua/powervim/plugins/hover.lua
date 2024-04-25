@@ -8,7 +8,7 @@ return {
         -- require('hover.providers.gh')
         -- require('hover.providers.gh_user')
         -- require('hover.providers.jira')
-        -- require('hover.providers.man')
+        require('hover.providers.man')
         -- require('hover.providers.dictionary')
       end,
       preview_opts = {
@@ -18,10 +18,10 @@ return {
       -- to a :h preview-window when pressing the hover keymap.
       preview_window = false,
       title = true,
-      mouse_providers = {
-        "LSP",
-      },
-      mouse_delay = 1000,
+      -- mouse_providers = {
+      --   "LSP",
+      -- },
+      -- mouse_delay = 1000,
     })
 
     -- Setup keymaps
