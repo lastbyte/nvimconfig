@@ -12,28 +12,34 @@ keymap.set("n", "<C-q>", "<cmd>qa!<CR>", { desc = "Close Neovim" })
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes" })
 keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode" })
 
+vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
+
 -- disable updating register for x and c
 keymap.set("n", "x", '"_x')
 keymap.set("n", "c", '"_c')
 keymap.set("n", "C", '"_C')
+
+-- move between cursors
+keymap.set("n", "<leader>.", "<C-i>", { desc = "next cursor position", noremap = true, silent = true })
+keymap.set("n", "<leader>,", "<C-o>", { desc = "prev cursor position", noremap = true, silent = true })
 
 -- window management
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Change window to right" })
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Change window to left" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Change window to bottom" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
-keymap.set("n", "<C-x>", "<cmd>close<CR>", { desc = "Close current split" })
+keymap.set("n", "<C-w>", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- tab navigation
-keymap.set({ "n", "v" }, "-", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
-keymap.set({ "n", "v" }, "_", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
+keymap.set({ "n", "v" }, "=", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
+keymap.set({ "n", "v" }, "-", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
 keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose!<cr>", { desc = "close current buffer" })
 
 -- splits management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-keymap.set('n', "<leader>e", ":Neotree toggle <cr>", { desc = "toggle tree" })
+keymap.set("n", "<leader>e", ":Neotree toggle <cr>", { desc = "toggle tree" })
 
 keymap.set("n", "D", "d$", { desc = "delete to end of line" })
 keymap.set("x", "Y", "y$", { desc = "Yank to end of line" })
@@ -134,17 +140,30 @@ keymap.set("n", "<space>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { noremap = true, silent = true, desc = "file browser" })
 -- search
-keymap.set("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { noremap = true, silent = true, })
+keymap.set(
+  "n",
+  "<leader>fw",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { noremap = true, silent = true }
+)
 keymap.set(
   "n",
   "<leader>fs",
   "<cmd>lua require('telescope.builtin').grep_string()<cr>",
   { noremap = true, silent = true, desc = "find the word under cursor" }
 )
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true, desc = "list files" })
-keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>",
-  { noremap = true, silent = true, desc = "find files in git" })
+keymap.set(
+  "n",
+  "<leader>ff",
+  "<cmd>Telescope find_files<cr>",
+  { noremap = true, silent = true, desc = "list files" }
+)
+keymap.set(
+  "n",
+  "<leader>fg",
+  "<cmd>Telescope git_files<cr>",
+  { noremap = true, silent = true, desc = "find files in git" }
+)
 -- search for symbols
 keymap.set(
   "n",
@@ -172,25 +191,65 @@ keymap.set(
   "<cmd>ToggleTerm direction=vertical size=50 name=SHELL<cr>",
   { noremap = true, silent = true, desc = "open a vertical terminal" }
 )
-keymap.set({ "n", "i", "t" }, "<C-t>", "<cmd>ToggleTermToggleAll<cr>",
-  { noremap = true, silent = true, desc = "toggle terminal" })
+keymap.set(
+  { "n", "i", "t" },
+  "<C-t>",
+  "<cmd>ToggleTermToggleAll<cr>",
+  { noremap = true, silent = true, desc = "toggle terminal" }
+)
 -- renamer
-keymap.set('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
-keymap.set('n', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
-keymap.set('v', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+keymap.set("i", "<F2>", '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+keymap.set("n", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+keymap.set("v", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
 
 --dap
-keymap.set('n', '<leader>dk', '<cmd>lua require("dap").terminate()<cr>',
-  { noremap = true, silent = true, desc = "start debugger on current file" })
+keymap.set(
+  "n",
+  "<leader>dk",
+  '<cmd>lua require("dap").terminate()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" }
+)
 --dap
-keymap.set('n', '<leader>do', '<cmd>lua require("dapui").open()<cr>',
-  { noremap = true, silent = true, desc = "start debugger on current file" })
-keymap.set('n', '<leader>dc', '<cmd>lua require("dapui").close()<cr>',
-  { noremap = true, silent = true, desc = "start debugger on current file" })
+keymap.set(
+  "n",
+  "<leader>do",
+  '<cmd>lua require("dapui").open()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" }
+)
+keymap.set(
+  "n",
+  "<leader>dc",
+  '<cmd>lua require("dapui").close()<cr>',
+  { noremap = true, silent = true, desc = "start debugger on current file" }
+)
 
-keymap.set('n', '<F5>', "<cmd>lua require('dap').continue()<cr>", { noremap = true, silent = true, desc = "continue" })
-keymap.set('n', '<F10>', "<cmd>lua require('dap').step_over()<cr>", { noremap = true, silent = true, desc = "step over" })
-keymap.set('n', '<F11>', "<cmd>lua require('dap').step_into()<cr>", { noremap = true, silent = true, desc = "step into" })
-keymap.set('n', '<F12>', "<cmd>lua require('dap').step_out()<cr>", { noremap = true, silent = true, desc = "step out" })
-keymap.set('n', '<leader>db', "<cmd>lua require('dap').toggle_breakpoint()<cr>",
-  { noremap = true, silent = true, desc = "toggle breakpoint" })
+keymap.set(
+  "n",
+  "<F5>",
+  "<cmd>lua require('dap').continue()<cr>",
+  { noremap = true, silent = true, desc = "continue" }
+)
+keymap.set(
+  "n",
+  "<F10>",
+  "<cmd>lua require('dap').step_over()<cr>",
+  { noremap = true, silent = true, desc = "step over" }
+)
+keymap.set(
+  "n",
+  "<F11>",
+  "<cmd>lua require('dap').step_into()<cr>",
+  { noremap = true, silent = true, desc = "step into" }
+)
+keymap.set(
+  "n",
+  "<F12>",
+  "<cmd>lua require('dap').step_out()<cr>",
+  { noremap = true, silent = true, desc = "step out" }
+)
+keymap.set(
+  "n",
+  "<leader>db",
+  "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+  { noremap = true, silent = true, desc = "toggle breakpoint" }
+)

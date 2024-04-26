@@ -76,6 +76,15 @@ return {
     -- typescript
     lspconfig.tsserver.setup({})
 
+    -- css
+    lspconfig.cssls.setup({})
+
+    --html
+    lspconfig.html.setup({})
+
+    --python
+    lspconfig.pyright.setup({})
+
     -- nice icons
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
