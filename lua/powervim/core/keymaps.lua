@@ -67,7 +67,12 @@ keymap.set(
   "<cmd>silent cc | silent cp<cr>zz",
   { desc = "Jump to previous issue", noremap = true, silent = true }
 )
-
+keymap.set(
+  "n",
+  "<leader>o",
+  "<cmd>SymbolsOutline<cr>",
+  { desc = "view document outline", noremap = true, silent = true }
+)
 -- other
 keymap.set("n", "<leader>mm", "<cmd>messages<cr>", { desc = "Show messages", noremap = true, silent = true })
 keymap.set(
@@ -198,7 +203,7 @@ keymap.set(
 -- search for symbols
 keymap.set(
   "n",
-  "<leader>sw",
+  "<leader>ss",
   "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>",
   { noremap = true, silent = true, desc = "find the symbols across project" }
 )
