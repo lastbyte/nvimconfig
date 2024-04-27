@@ -6,6 +6,7 @@ return {
     vim.opt.splitkeep = "screen"
   end,
   opts = {
+    options = { left = { size = 40 } },
     animate = {
       enabled = false,
     },
@@ -43,6 +44,7 @@ return {
       { ft = "spectre_panel", size = { height = 0.4 } },
     },
     left = {
+      size = 40,
       -- Neo-tree filesystem always takes half the screen height
       {
         title = "Files",

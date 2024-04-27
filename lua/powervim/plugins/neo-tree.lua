@@ -137,7 +137,7 @@ return {
           nowait = true,
         },
         mappings = {
-          ["<space>"] = {
+          ["<space>t"] = {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
           },
@@ -320,6 +320,17 @@ return {
       },
     })
 
-    vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+    vim.api.nvim_create_autocmd("VimLeave", {
+      pattern = "*",
+      callback = function()
+        require("neo-tree.command").execute({ action = "close" })
+      end,
+    })
+    vim.api.nvim_create_autocmd("VimEnter", {
+      pattern = "*",
+      callback = function()
+        require("neo-tree.command").execute({ action = "focus" })
+      end,
+    })
   end,
 }
