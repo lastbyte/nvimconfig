@@ -8,9 +8,10 @@ end
 local keymap = vim.keymap -- for conciseness
 
 -- Neovim
-keymap.set("n", "<C-q>", "<cmd>qa!<CR>", { desc = "Close Neovim" })
-keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes" })
-keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode" })
+keymap.set("n", "<C-q>", ":qa!<CR>", { desc = "Close Neovim", noremap = true, silent = true })
+keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes", noremap = true, silent = true })
+keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode", noremap = true, silent = true })
+keymap.set("i", "<C-a>", ":gg^vG$", { desc = "go to normal mode", noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 
@@ -24,41 +25,76 @@ keymap.set("n", "<leader>.", "<C-i>", { desc = "next cursor position", noremap =
 keymap.set("n", "<leader>,", "<C-o>", { desc = "prev cursor position", noremap = true, silent = true })
 
 -- window management
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Change window to right" })
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Change window to left" })
-keymap.set("n", "<C-j>", "<C-w>j", { desc = "Change window to bottom" })
-keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top" })
-keymap.set("n", "<C-w>", "<cmd>close<CR>", { desc = "Close current split" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Change window to right", noremap = true, silent = true })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Change window to left", noremap = true, silent = true })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Change window to bottom", noremap = true, silent = true })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top", noremap = true, silent = true })
+keymap.set("n", "<C-w>", "<cmd>close<CR>", { desc = "Close current split", noremap = true, silent = true })
 
 -- tab navigation
-keymap.set({ "n", "v" }, "=", "<cmd>BufferNext<cr>", { desc = "go to next buffer" })
-keymap.set({ "n", "v" }, "-", "<cmd>BufferPrevious<cr>", { desc = "go to previous buffer" })
-keymap.set({ "n" }, "<leader>x", "<cmd>BufferClose!<cr>", { desc = "close current buffer" })
+keymap.set({ "n", "v" }, "=", "<cmd>bn<cr>", { desc = "go to next buffer", noremap = true, silent = true })
+keymap.set(
+  { "n", "v" },
+  "-",
+  "<cmd>bp<cr>",
+  { desc = "go to previous buffer", noremap = true, silent = true }
+)
+keymap.set(
+  { "n" },
+  "<leader>w",
+  "<cmd>bd!<cr>",
+  { desc = "close current buffer", noremap = true, silent = true }
+)
 
 -- splits management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-keymap.set("n", "<leader>e", ":Neotree toggle <cr>", { desc = "toggle tree" })
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically", noremap = true, silent = true })
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally", noremap = true, silent = true })
+keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size", noremap = true, silent = true })
+keymap.set("n", "<leader>e", ":Neotree toggle <cr>", { desc = "toggle tree", noremap = true, silent = true })
 
-keymap.set("n", "D", "d$", { desc = "delete to end of line" })
-keymap.set("x", "Y", "y$", { desc = "Yank to end of line" })
+keymap.set("n", "D", "d$", { desc = "delete to end of line", noremap = true, silent = true })
+keymap.set("x", "Y", "y$", { desc = "Yank to end of line", noremap = true, silent = true })
 
 -- moving blocks up and down
-keymap.set("v", "<C-g>", "<cmd>m .+1<CR>gv=gv", { desc = "Move text down" })
-keymap.set("v", "<C-t>", "<cmd>m .-2<CR>gv=gv", { desc = "Move text up" })
+keymap.set("v", "<C-g>", "<cmd>m .+1<CR>gv=gv", { desc = "Move text down", noremap = true, silent = true })
+keymap.set("v", "<C-t>", "<cmd>m .-2<CR>gv=gv", { desc = "Move text up", noremap = true, silent = true })
 
 -- jumping between issues
-keymap.set("n", "<A-d>", "<cmd>silent cc | silent cn<cr>zz", { desc = "Jump to next issue" })
-keymap.set("n", "<A-s>", "<cmd>silent cc | silent cp<cr>zz", { desc = "Jump to previous issue" })
+keymap.set(
+  "n",
+  "<A-d>",
+  "<cmd>silent cc | silent cn<cr>zz",
+  { desc = "Jump to next issue", noremap = true, silent = true }
+)
+keymap.set(
+  "n",
+  "<A-s>",
+  "<cmd>silent cc | silent cp<cr>zz",
+  { desc = "Jump to previous issue", noremap = true, silent = true }
+)
 
 -- other
-keymap.set("n", "<leader>mm", "<cmd>messages<cr>", { desc = "Show messages" })
-keymap.set("n", "}", '<cmd>execute "keepjumps norm! }"<cr>', { desc = "Next Paragraph" })
-keymap.set("n", "{", '<cmd>execute "keepjumps norm! {"<cr>', { desc = "Previous Paragraph" })
+keymap.set("n", "<leader>mm", "<cmd>messages<cr>", { desc = "Show messages", noremap = true, silent = true })
+keymap.set(
+  "n",
+  "}",
+  '<cmd>execute "keepjumps norm! }"<cr>',
+  { desc = "Next Paragraph", noremap = true, silent = true }
+)
+keymap.set(
+  "n",
+  "{",
+  '<cmd>execute "keepjumps norm! {"<cr>',
+  { desc = "Previous Paragraph", noremap = true, silent = true }
+)
 
 -- theme
-keymap.set("n", "<leader>th", "<cmd>Telescope colorscheme<cr>", { desc = "Switch themes" })
+keymap.set(
+  "n",
+  "<leader>th",
+  "<cmd>Telescope colorscheme<cr>",
+  { desc = "Switch themes", noremap = true, silent = true }
+)
 
 -- browse project
 keymap.set(
