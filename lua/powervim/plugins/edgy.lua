@@ -54,13 +54,6 @@ return {
         end,
         size = { height = 0.5 },
       },
-      {
-        ft = "Outline",
-        pinned = true,
-        open = "SymbolsOutline",
-      },
-      -- any other neo-tree windows
-      "neo-tree",
     },
     ---@type table<string, fun(win:Edgy.Window)|false>
     keys = {
