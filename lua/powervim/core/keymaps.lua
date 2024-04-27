@@ -253,3 +253,6 @@ keymap.set(
   "<cmd>lua require('dap').toggle_breakpoint()<cr>",
   { noremap = true, silent = true, desc = "toggle breakpoint" }
 )
+
+vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
+vim.keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>")
