@@ -5,14 +5,7 @@ return {
   config = function()
     require("bufferline").setup({
       options = {
-        offsets = {
-          {
-            filetype = "NeoTree",
-            text = "NeoTree",
-            text_align = "left",
-            separator = true,
-          },
-        },
+        offsets = { { filetype = "neo-tree", text = "Explorer", padding = 1, text_align = "left" } },
       },
     })
   end,

@@ -8,7 +8,7 @@ end
 local keymap = vim.keymap -- for conciseness
 
 -- Neovim
-keymap.set("n", "<C-q>", ":qa!<CR>", { desc = "Close Neovim", noremap = true, silent = true })
+keymap.set("n", "<C-Q>", ":qa!<CR>", { desc = "Close Neovim", noremap = true, silent = true })
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes", noremap = true, silent = true })
 keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode", noremap = true, silent = true })
 keymap.set("i", "<C-a>", ":gg^vG$", { desc = "go to normal mode", noremap = true, silent = true })
@@ -29,7 +29,7 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Change window to right", noremap = 
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Change window to left", noremap = true, silent = true })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Change window to bottom", noremap = true, silent = true })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Change window to top", noremap = true, silent = true })
-keymap.set("n", "<C-w>", "<cmd>close<CR>", { desc = "Close current split", noremap = true, silent = true })
+keymap.set("n", "<C-q>", "<cmd>close<CR>", { desc = "Close current split", noremap = true, silent = true })
 
 -- tab navigation
 keymap.set({ "n", "v" }, "=", "<cmd>bn<cr>", { desc = "go to next buffer", noremap = true, silent = true })
@@ -39,12 +39,7 @@ keymap.set(
   "<cmd>bp<cr>",
   { desc = "go to previous buffer", noremap = true, silent = true }
 )
-keymap.set(
-  { "n" },
-  "<leader>w",
-  "<cmd>bd!<cr>",
-  { desc = "close current buffer", noremap = true, silent = true }
-)
+keymap.set({ "n" }, "<C-w>", "<cmd>bd!<cr>", { desc = "close current buffer", noremap = true, silent = true })
 
 -- splits management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically", noremap = true, silent = true })

@@ -9,6 +9,9 @@ return {
     animate = {
       enabled = false,
     },
+    wo = {
+      winbar = true,
+    },
     bottom = {
       -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
       {
@@ -42,21 +45,12 @@ return {
     left = {
       -- Neo-tree filesystem always takes half the screen height
       {
-        title = "Neo-Tree",
+        title = "Files",
         ft = "neo-tree",
         filter = function(buf)
           return vim.b[buf].neo_tree_source == "filesystem"
         end,
         size = { height = 0.5 },
-      },
-      {
-        title = "Neo-Tree Buffers",
-        ft = "neo-tree",
-        filter = function(buf)
-          return vim.b[buf].neo_tree_source == "buffers"
-        end,
-        pinned = true,
-        open = "Neotree position=top buffers",
       },
       {
         ft = "Outline",
@@ -65,6 +59,57 @@ return {
       },
       -- any other neo-tree windows
       "neo-tree",
+    },
+    ---@type table<string, fun(win:Edgy.Window)|false>
+    keys = {
+      -- close window
+      ["q"] = function(win)
+        win:close()
+      end,
+      -- hide window
+      ["<c-q>"] = function(win)
+        win:hide()
+      end,
+      -- close sidebar
+      ["Q"] = function(win)
+        win.view.edgebar:close()
+      end,
+      -- next open window
+      ["]w"] = function(win)
+        win:next({ visible = true, focus = true })
+      end,
+      -- previous open window
+      ["[w"] = function(win)
+        win:prev({ visible = true, focus = true })
+      end,
+      -- next loaded window
+      ["]W"] = function(win)
+        win:next({ pinned = false, focus = true })
+      end,
+      -- prev loaded window
+      ["[W"] = function(win)
+        win:prev({ pinned = false, focus = true })
+      end,
+      -- increase width
+      ["<c-z>>"] = function(win)
+        win:resize("width", 10)
+      end,
+      -- decrease width
+      ["<c-z><lt>"] = function(win)
+        win:resize("width", -10)
+      end,
+      -- increase height
+      ["<c-z>+"] = function(win)
+        win:resize("height", 2)
+      end,
+      -- decrease height
+      ["<c-z>-"] = function(win)
+        win:resize("height", -2)
+      end,
+      -- reset all custom sizing
+      ["<c-z>="] = function(win)
+        win.view.edgebar:equalize()
+      end,
     },
   },
 }
