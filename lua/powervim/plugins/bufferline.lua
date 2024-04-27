@@ -6,6 +6,7 @@ return {
     require("bufferline").setup({
       options = {
         offsets = { { filetype = "neo-tree", text = "Explorer", padding = 1, text_align = "left" } },
+        separator_style = "slope",
       },
     })
   end,
