@@ -11,7 +11,7 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("n", "<C-Q>", ":qa!<CR>", { desc = "Close Neovim", noremap = true, silent = true })
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR><ESC>", { desc = "Save Changes", noremap = true, silent = true })
 keymap.set("i", "jk", "<ESC>", { desc = "go to normal mode", noremap = true, silent = true })
-keymap.set("i", "<C-a>", ":gg^vG$", { desc = "go to normal mode", noremap = true, silent = true })
+keymap.set("n", "<C-a>", "gg^vG$", { desc = "go to normal mode", noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 
