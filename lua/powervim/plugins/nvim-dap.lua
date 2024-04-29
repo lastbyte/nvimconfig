@@ -12,6 +12,12 @@ return {
       },
     }
 
+    dap.adapters.python = {
+      type = "executable",
+      command = "/usr/bin/python3",
+      args = { "-m", "debugpy.adapter" },
+    }
+
     dap.configurations.go = {
 
       {
@@ -19,6 +25,18 @@ return {
         name = "Debug",
         request = "launch",
         program = "${file}",
+      },
+    }
+
+    dap.configurations.python = {
+      {
+        type = "python",
+        name = "debug",
+        request = "launch",
+        program = "${file}",
+        pythonPath = function()
+          return "/usr/bin/python"
+        end,
       },
     }
   end,

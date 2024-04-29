@@ -39,12 +39,12 @@ return {
     -- lspconfig.ccls.setup {
     --
     -- }
-    lspconfig.clangd.setup {
+    lspconfig.clangd.setup({
       pattern = { "c", "h", "hpp", "cpp" },
       capabilities = capabilities,
       on_attach = on_attach,
       on_init = on_init,
-    }
+    })
 
     -- lua
     lspconfig.lua_ls.setup({
@@ -83,7 +83,9 @@ return {
     lspconfig.html.setup({})
 
     --python
-    lspconfig.pyright.setup({})
+    lspconfig.pyright.setup({
+      pattern = { "py" },
+    })
 
     -- nice icons
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
