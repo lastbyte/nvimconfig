@@ -12,6 +12,7 @@ return {
       auto_open = false,
       auto_close = false,
       auto_preview = true,
+      multiline = true,
       auto_jump = {},
       mode = "quickfix",
       severity = vim.diagnostic.severity.ERROR,

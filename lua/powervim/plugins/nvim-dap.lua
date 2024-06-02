@@ -35,7 +35,7 @@ return {
         request = "launch",
         program = "${file}",
         pythonPath = function()
-          return "/usr/bin/python"
+          return "./.venv/bin/python"
         end,
       },
     }
