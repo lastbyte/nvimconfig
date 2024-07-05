@@ -9,7 +9,7 @@ return {
       flavour = "frappe",
       transparent_background = false,
       dim_inactive = {
-        enabled = false,  -- dims the background color of inactive window
+        enabled = false, -- dims the background color of inactive window
         shade = "light",
         percentage = 0.9, -- percentage of the shade to apply to the inactive window
       },
@@ -27,6 +27,6 @@ return {
       end,
     })
 
-    -- vim.cmd([[colorscheme catppuccin]])
+    vim.cmd([[colorscheme catppuccin]])
   end,
 }

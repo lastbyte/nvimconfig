@@ -92,7 +92,7 @@ keymap.set(
 keymap.set(
   "n",
   "<leader>th",
-  "<cmd>Telescope colorscheme<cr>",
+  "<cmd>FzfLua colorscheme<cr>",
   { desc = "Switch themes", noremap = true, silent = true }
 )
 
@@ -100,25 +100,25 @@ keymap.set(
 keymap.set(
   "n",
   "<leader>gd",
-  "<cmd>Telescope lsp_definitions <cr>",
+  "<cmd>FzfLua lsp_definitions <cr>",
   { desc = "go to definition", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gD",
-  "<cmd>Telescope lsp_type_definitions <cr>",
+  "<cmd>FzfLua lsp_type_definitions<cr>",
   { desc = "go to type definitions", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gi",
-  "<cmd>Telescope lsp_implementations <cr>",
+  "<cmd>FzfLua lsp_implementations <cr>",
   { desc = "go to implementation", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gr",
-  "<cmd>Telescope lsp_references <cr>",
+  "<cmd>FzfLua lsp_references <cr>",
   { desc = "go to references", noremap = true, silent = true }
 )
 
@@ -132,31 +132,31 @@ keymap.set("n", "<leader>da", "<cmd>Telescope diagnostics<cr>", { noremap = true
 keymap.set(
   "n",
   "<leader>gc",
-  "<cmd>Telescope git_commits<cr>",
+  "<cmd>FzfLua git_commits<cr>",
   { desc = "git commits", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gl",
-  "<cmd>Telescope git_branches<cr>",
+  "<cmd>FzfLua git_branches<cr>",
   { desc = "git commits", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gs",
-  "<cmd>Telescope git_status<cr>",
+  "<cmd>FzfLua git_status<cr>",
   { desc = "git commits", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gt",
-  "<cmd>Telescope git_stash<cr>",
+  "<cmd>FzfLua git_stash<cr>",
   { desc = "git commits", noremap = true, silent = true }
 )
 keymap.set(
   "n",
   "<leader>gh",
-  "<cmd>Telescope git_bcommits<cr>",
+  "<cmd>FzfLua git_bcommits<cr>",
   { desc = "git history for the file", noremap = true, silent = true }
 )
 keymap.set(
@@ -176,35 +176,13 @@ keymap.set("n", "<space>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { noremap = true, silent = true, desc = "file browser" })
 -- search
-keymap.set(
-  "n",
-  "<leader>fw",
-  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { noremap = true, silent = true }
-)
-keymap.set(
-  "n",
-  "<leader>fs",
-  "<cmd>lua require('telescope.builtin').grep_string()<cr>",
-  { noremap = true, silent = true, desc = "find the word under cursor" }
-)
-keymap.set(
-  "n",
-  "<leader>ff",
-  "<cmd>Telescope find_files<cr>",
-  { noremap = true, silent = true, desc = "list files" }
-)
-keymap.set(
-  "n",
-  "<leader>fg",
-  "<cmd>Telescope git_files<cr>",
-  { noremap = true, silent = true, desc = "find files in git" }
-)
+keymap.set("n", "<leader>fw", ":Fzflua live_grep <CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { noremap = true, silent = true, desc = "list files" })
 -- search for symbols
 keymap.set(
   "n",
   "<leader>ss",
-  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>",
+  "<cmd>FzfLua lsp_live_workspace_symbols<cr>",
   { noremap = true, silent = true, desc = "find the symbols across project" }
 )
 keymap.set(
@@ -292,3 +270,10 @@ keymap.set(
 
 vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
 vim.keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>")
+
+keymap.set(
+  { "n" },
+  "<leader>dll",
+  ":CECompileLive<cr>",
+  { silent = true, noremap = true, desc = "assembly language" }
+)
