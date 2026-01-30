@@ -176,7 +176,7 @@ keymap.set("n", "<space>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { noremap = true, silent = true, desc = "file browser" })
 -- search
-keymap.set("n", "<leader>fw", ":Fzflua live_grep <CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>fw", ":fzf live_grep <CR>", { noremap = true, silent = true })
 keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { noremap = true, silent = true, desc = "list files" })
 -- search for symbols
 keymap.set(

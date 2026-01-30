@@ -6,7 +6,7 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
-    local lspconfig = require("lspconfig")
+    local lspconfig = vim.lsp.config
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
     capabilities.offsetEncoding = { "utf-16" }
@@ -39,7 +39,39 @@ return {
     -- lspconfig.ccls.setup {
     --
     -- }
-    lspconfig.clangd.setup({
+    vim.lsp.enable("pyright")
+
+    -- Enable the vtsls language server
+    vim.lsp.enable("vtsls", {
+      -- Optional: Add custom settings here. These settings are similar to
+      -- VS Code's TypeScript extension settings.
+      settings = {
+        -- Example settings for inlay hints and function call completion
+        typescript = {
+          inlayHints = {
+            functionLikeReturnTypes = { enabled = true },
+            parameterNames = { enabled = "literals" },
+            variableTypes = { enabled = true },
+          },
+          suggest = {
+            completeFunctionCalls = true,
+          },
+        },
+        javascript = {
+          -- same as typescript settings if needed
+        },
+        vtsls = {
+          -- Automatically use the workspace's TypeScript version if available
+          autoUseWorkspaceTsdk = true,
+        },
+      },
+      -- Other lspconfig options can go here, like on_attach function
+      -- on_attach = function(client, bufnr)
+      --    -- keymaps or other setups
+      -- end,
+    })
+
+    vim.lsp.config("clangd", {
       pattern = { "c", "h", "hpp", "cpp" },
       capabilities = capabilities,
       on_attach = on_attach,
@@ -47,7 +79,7 @@ return {
     })
 
     -- lua
-    lspconfig.lua_ls.setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       on_attach = on_attach,
       on_init = on_init,
@@ -61,7 +93,7 @@ return {
     })
 
     -- go
-    lspconfig.gopls.setup({
+    vim.lsp.config("gopls", {
       settings = {
         gopls = {
           analyses = {
@@ -73,19 +105,14 @@ return {
       },
     })
 
-    -- typescript
-    lspconfig.tsserver.setup({})
-
     -- css
-    lspconfig.cssls.setup({})
+    vim.lsp.config("cssls", {})
 
     --html
-    lspconfig.html.setup({})
+    vim.lsp.config("html", {})
 
     --python
-    lspconfig.pyright.setup({
-      pattern = { "py" },
-    })
+    vim.lsp.config("pyright", {})
 
     -- nice icons
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
