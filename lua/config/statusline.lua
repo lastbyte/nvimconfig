@@ -105,10 +105,29 @@ local function mode_icon()
 	return modes[mode] or (" \u{f059} " .. mode)
 end
 
+-- Active LSP client(s) for the current buffer
+local function lsp_status()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	if vim.tbl_isempty(clients) then
+		return ""
+	end
+	local names = {}
+	for _, c in ipairs(clients) do
+		if c.name ~= "efm" then
+			table.insert(names, c.name)
+		end
+	end
+	if vim.tbl_isempty(names) then
+		return ""
+	end
+	return " \u{f085} " .. table.concat(names, ",") .. " " -- nf-fa-gear
+end
+
 _G.mode_icon = mode_icon
 _G.git_branch = git_branch
 _G.file_type = file_type
 _G.file_size = file_size
+_G.lsp_status = lsp_status
 
 vim.cmd([[
   highlight StatusLineBold gui=bold cterm=bold
@@ -130,6 +149,7 @@ local function setup_dynamic_statusline()
 				"\u{e0b1} ", -- nf-pl-left_hard_divider
 				"%{v:lua.file_size()}",
 				"%=", -- Right-align everything after this
+				"%{v:lua.lsp_status()}",
 				" \u{f017} %l:%c  %P ", -- nf-fa-clock_o for line/col
 			})
 		end,

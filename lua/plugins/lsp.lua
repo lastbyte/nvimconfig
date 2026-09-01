@@ -177,8 +177,15 @@ do
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 
+	local PY_LINE_LENGTH = 1200
+
 	local flake8 = require("efmls-configs.linters.flake8")
+	flake8.lintCommand = flake8.lintCommand:gsub(" %-$", string.format(" --max-line-length=%d -", PY_LINE_LENGTH))
+
 	local black = require("efmls-configs.formatters.black")
+	black.formatCommand = black.formatCommand:gsub("%-%-no%-color %-q", function(m)
+		return m .. string.format(" --line-length=%d", PY_LINE_LENGTH)
+	end)
 
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local eslint_d = require("efmls-configs.linters.eslint_d")
@@ -238,13 +245,6 @@ do
 		},
 	})
 end
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.vue", "*.svelte" },
-	callback = function()
-		vim.lsp.buf.format({ async = false })
-	end,
-})
 
 vim.lsp.enable({
 	"lua_ls",

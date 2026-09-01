@@ -2,6 +2,7 @@
 -- PLUGINS (vim.pack)
 -- ============================================================================
 vim.pack.add({
+	"https://github.com/catppuccin/nvim",
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua",
 	"https://www.github.com/nvim-tree/nvim-tree.lua",
@@ -31,6 +32,7 @@ vim.pack.add({
 -- ============================================================================
 -- PLUGIN CONFIGS
 -- ============================================================================
+require("plugins.catppuccin")
 require("plugins.misc")
 require("plugins.treesitter")
 require("plugins.obsidian")
