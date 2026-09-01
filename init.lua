@@ -1,2 +1,2 @@
-require("powervim.core")
-require("powervim.lazy")
+require("config")
+require("plugins")
