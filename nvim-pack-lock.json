@@ -61,9 +61,9 @@
       "rev": "1cbbab3a8959bbc1cd136cb1670b75c172073fce",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
-    "topology.nvim": {
-      "rev": "446e0dbf685c6d5183dbddc8bc186d0d3ddcf20c",
-      "src": "https://github.com/lastbyte/topology.nvim"
+    "vim-quickrun": {
+      "rev": "77b4d6ea9972a206f02c736882c2398c36d2983c",
+      "src": "https://github.com/thinca/vim-quickrun"
     },
     "vim-tmux-navigator": {
       "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",

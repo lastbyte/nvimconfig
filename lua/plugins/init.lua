@@ -25,8 +25,8 @@ vim.pack.add({
 	"https://github.com/mrcjkb/rustaceanvim",
 	"https://github.com/christoomey/vim-tmux-navigator",
 	"https://github.com/kdheepak/lazygit.nvim",
-	"https://github.com/lastbyte/topology.nvim",
 	"https://github.com/numtostr/comment.nvim",
+	"https://github.com/thinca/vim-quickrun",
 })
 
 -- ============================================================================
@@ -40,3 +40,4 @@ require("plugins.nvim-tree")
 require("plugins.fzf-lua")
 require("plugins.mini")
 require("plugins.lsp")
+require("plugins.quickrun")

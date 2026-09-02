@@ -17,9 +17,4 @@ vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" }
 
 require("lazygit")
 
-require("topology").setup({
-	bin_path = "codebase-memory-mcp", -- Uses the real system binary
-	direction = "downstream",
-})
-
 vim.keymap.set("n", "<leader>gg", "<Esc>:LazyGit<CR>", { desc = "open lazygit interface" })
