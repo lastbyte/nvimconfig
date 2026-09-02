@@ -5,22 +5,22 @@ manager needed) plus `mason.nvim` for LSP servers, linters, and formatters.
 
 ## 1. Core requirements (all platforms)
 
-| Tool | Why | Min version |
-|---|---|---|
-| Neovim | the editor itself, `vim.pack` needs this | **0.12+** |
-| git | `vim.pack` clones plugins over git | any recent |
-| A C compiler (cc/gcc/clang) | compiles Treesitter parsers (`:TSUpdate`) | any recent |
-| [Nerd Font](https://www.nerdfonts.com/) | icons in statusline, nvim-tree, fzf-lua, diagnostics | any Nerd Font, set as your terminal's font |
-| ripgrep (`rg`) | `fzf-lua` live grep | any recent |
-| Node.js + npm | mason installs several LSPs via npm (`pyright`, `bashls`, `ts_ls`, `eslint_d`, `prettier_d`, `fixjson`) | LTS |
-| Python 3 + pip | mason installs python-based tools (`black`, `flake8`) through an isolated venv | 3.9+ |
-| Go | `gopls`, `gofumpt`, `go-revive` | 1.21+ |
-| A terminal clipboard tool (Linux only) | `unnamedplus` clipboard option | see below |
+| Tool                                    | Why                                                                                                     | Min version                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| Neovim                                  | the editor itself, `vim.pack` needs this                                                                | **0.12+**                                  |
+| git                                     | `vim.pack` clones plugins over git                                                                      | any recent                                 |
+| A C compiler (cc/gcc/clang)             | compiles Treesitter parsers (`:TSUpdate`)                                                               | any recent                                 |
+| [Nerd Font](https://www.nerdfonts.com/) | icons in statusline, nvim-tree, fzf-lua, diagnostics                                                    | any Nerd Font, set as your terminal's font |
+| ripgrep (`rg`)                          | `fzf-lua` live grep                                                                                     | any recent                                 |
+| Node.js + npm                           | mason installs several LSPs via npm (`pyright`, `bashls`, `ts_ls`, `eslint_d`, `prettier_d`, `fixjson`) | LTS                                        |
+| Python 3 + pip                          | mason installs python-based tools (`black`, `flake8`) through an isolated venv                          | 3.9+                                       |
+| Go                                      | `gopls`, `gofumpt`, `go-revive`                                                                         | 1.21+                                      |
+| A terminal clipboard tool (Linux only)  | `unnamedplus` clipboard option                                                                          | see below                                  |
 
 Optional, only if you use that part of the config:
+
 - **lazygit** binary — for `<leader>gg` (lazygit.nvim manages/builds this itself via vim.pack, but a system install works too)
 - **tmux** — only relevant if you also use `vim-tmux-navigator` inside tmux
-- **codebase-memory-mcp** binary on `PATH` — used by `topology.nvim` (`lua/plugins/misc.lua`); harmless if absent, that one plugin just won't work
 
 ---
 
@@ -108,6 +108,7 @@ Set your terminal (Windows Terminal, etc) font to the Nerd Font.
 > work there. It works fine under WSL.
 
 ### Option B: WSL2 (recommended — this config's `obsidian.lua` already assumes
+
 a Linux-style path when `sysname == "Linux"`, which is what WSL reports)
 
 Install WSL2 with your distro of choice, then follow the **Linux** steps above
