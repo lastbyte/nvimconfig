@@ -6,7 +6,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		{
 			"saghen/blink.cmp",
-			version = vim.version.range("1.*"),
+			version = "1.*",
 		},
 		"mrcjkb/rustaceanvim",
 	},
