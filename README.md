@@ -1,14 +1,15 @@
 # Neovim config setup
 
-This config uses Neovim's built-in `vim.pack` plugin manager (no external plugin
-manager needed) plus `mason.nvim` for LSP servers, linters, and formatters.
+This config uses [`lazy.nvim`](https://github.com/folke/lazy.nvim) as its plugin
+manager (self-bootstrapping — no manual install step) plus `mason.nvim` for LSP
+servers, linters, and formatters.
 
 ## 1. Core requirements (all platforms)
 
 | Tool                                    | Why                                                                                                     | Min version                                |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| Neovim                                  | the editor itself, `vim.pack` needs this                                                                | **0.12+**                                  |
-| git                                     | `vim.pack` clones plugins over git                                                                      | any recent                                 |
+| Neovim                                  | the editor itself (native `vim.lsp.config`/`vim.lsp.enable` API)                                        | **0.11+**                                  |
+| git                                     | `lazy.nvim` clones itself and all plugins over git                                                      | any recent                                 |
 | A C compiler (cc/gcc/clang)             | compiles Treesitter parsers (`:TSUpdate`)                                                               | any recent                                 |
 | [Nerd Font](https://www.nerdfonts.com/) | icons in statusline, nvim-tree, fzf-lua, diagnostics                                                    | any Nerd Font, set as your terminal's font |
 | ripgrep (`rg`)                          | `fzf-lua` live grep                                                                                     | any recent                                 |
@@ -19,7 +20,7 @@ manager needed) plus `mason.nvim` for LSP servers, linters, and formatters.
 
 Optional, only if you use that part of the config:
 
-- **lazygit** binary — for `<leader>gg` (lazygit.nvim manages/builds this itself via vim.pack, but a system install works too)
+- **lazygit** binary — for `<leader>gg` (lazygit.nvim manages/builds this itself, but a system install works too)
 - **tmux** — only relevant if you also use `vim-tmux-navigator` inside tmux
 
 ---
@@ -130,8 +131,9 @@ Then just launch:
 nvim
 ```
 
-`vim.pack` installs all plugins automatically on first launch (see
-`lua/plugins/init.lua`). Wait for it to finish, then restart Neovim once.
+`lazy.nvim` bootstraps itself and installs all plugins automatically on first
+launch (see `lua/config/lazy.lua`, plugin specs under `lua/plugins/`). Wait
+for it to finish, then restart Neovim once.
 
 ---
 
