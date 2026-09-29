@@ -27,10 +27,10 @@ return {
 			require("hover").hover_select({})
 		end, { desc = "hover.nvim (select)" })
 
-		-- Mouse support
-		vim.keymap.set("n", "<MouseMove>", function()
-			require("hover").mouse({})
-		end, { desc = "hover.nvim (mouse)" })
-		vim.o.mousemoveevent = true -- Required by Neovim to detect mouse movement
+		-- -- Mouse support
+		-- vim.keymap.set("n", "<MouseMove>", function()
+		-- 	require("hover").mouse({})
+		-- end, { desc = "hover.nvim (mouse)" })
+		-- vim.o.mousemoveevent = true -- Required by Neovim to detect mouse movement
 	end,
 }
