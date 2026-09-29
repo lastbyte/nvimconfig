@@ -193,7 +193,7 @@ return {
 			local luacheck = require("efmls-configs.linters.luacheck")
 			local stylua = require("efmls-configs.formatters.stylua")
 
-			local PY_LINE_LENGTH = 1200
+			local PY_LINE_LENGTH = 88
 
 			local flake8 = require("efmls-configs.linters.flake8")
 			flake8.lintCommand = flake8.lintCommand:gsub(" %-$", string.format(" --max-line-length=%d -", PY_LINE_LENGTH))
