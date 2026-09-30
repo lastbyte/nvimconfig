@@ -12,6 +12,8 @@ vim.keymap.set("n", "k", function()
 	return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 
+-- save file
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>i", { desc = "save current buffer" })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "indent left" })
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
@@ -46,7 +48,8 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
-vim.keymap.set("i", "jk", "<Esc>", { desc = "escape normal mode" })
+vim.keymap.set("i", "jk", "<Esc>:w<CR>", { desc = "escape normal mode" })
+vim.keymap.set("i", "<Esc>", "<Esc>:w<CR>", { desc = "Exit insert mode and save" })
 vim.keymap.set("n", "<leader>pa", function() -- show file path
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
